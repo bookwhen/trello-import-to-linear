@@ -22,7 +22,15 @@ type TrelloBoardButton = {
   callback: (t: Trello, opts: any) => void;
 }
 
-type TrelloCardButton = {
+type TrelloCardButton = TrelloCardButtonUrl | TrelloCardButtonCallback;
+type TrelloCardButtonUrl = {
+  icon: string;
+  text: string;
+  condition: TrelloPowerUpShowCondition;
+  url: string;
+  target?: string;
+}
+type TrelloCardButtonCallback = {
   icon: string;
   text: string;
   condition: TrelloPowerUpShowCondition;
@@ -77,7 +85,6 @@ type TrelloList = {
 type TrelloCard = {
   id: ID;
   name: string;
-  name: string;
   desc: string;
   due: Date;
   dueComplete: boolean;
@@ -88,6 +95,14 @@ type TrelloCard = {
   idList: string;
   badges: string;
   pos: string;
+  attachments: TrelloAttachment[];
+}
+
+type TrelloAttachment = {
+  id: ID;
+  idMember: ID;
+  name: string;
+  url: string;
 }
 
 type TrelloLabel = {
