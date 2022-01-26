@@ -1,8 +1,6 @@
 // @ts-check
 var TrelloPowerUp = /** @type {ExtendedWindow} */(window).TrelloPowerUp;
 
-console.log('henlo, am client');
-
 window.Promise = TrelloPowerUp.Promise; // for browser compatibility
 
 TrelloPowerUp.initialize(makeConfig());
@@ -11,7 +9,6 @@ TrelloPowerUp.initialize(makeConfig());
 function makeConfig() {
   return {
     'card-buttons': function (t, opts) {
-      console.log('card-buttons initialize', arguments);
       return t.card('all').then(function (card) {
         return [
           makeCopyToLinearCardButton(card)
@@ -26,7 +23,7 @@ function makeConfig() {
  * @returns {TrelloCardButton}
  **/
 function makeCopyToLinearCardButton(card) {
-  var url = 'https://trello.com/c/' + card.shortLink;
+  var url = `https://trello.com/c/${card.shortLink}`;
   var title = card.name;
   var mdDesc = card.desc;
   var formattedAttachments = card.attachments
@@ -39,7 +36,7 @@ function makeCopyToLinearCardButton(card) {
 
   var labels = card.labels.map(l => l.name);
 
-  var linearUrl = new URL('https://linear.app/bookwhen/team/DEV/new')
+  var linearUrl = new URL('https://linear.app/new');
   linearUrl.searchParams.set('title', title);
   linearUrl.searchParams.set('description', description);
   linearUrl.searchParams.set('status', 'Backlock');

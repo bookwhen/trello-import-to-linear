@@ -24,14 +24,14 @@ type TrelloBoardButton = {
 
 type TrelloCardButton = TrelloCardButtonUrl | TrelloCardButtonCallback;
 type TrelloCardButtonUrl = {
-  icon: string;
+  icon: string | null;
   text: string;
   condition: TrelloPowerUpShowCondition;
   url: string;
   target?: string;
 }
 type TrelloCardButtonCallback = {
-  icon: string;
+  icon: string | null;
   text: string;
   condition: TrelloPowerUpShowCondition;
   callback: (t: Trello, opts: any) => void;
